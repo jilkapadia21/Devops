@@ -1,0 +1,177 @@
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f9fafb; /* Light background color */
+    color: #4b5563; /* Dark text color */
+}
+
+/* Container */
+.about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center alignment */
+    text-align: center; /* Center text */
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners for the container */
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #4a90e2, #50e3c2); /* Bright gradient background */
+    color: white; /* White text for contrast */
+    padding: 80px 20px;
+    width: 100%;
+    border-radius: 15px; /* More rounded corners */
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
+}
+
+/* Hero Title */
+.hero-title {
+    font-size: 3rem; /* Larger font size */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+}
+
+/* Hero Button */
+.hero-button {
+    background-color: #50e3c2; /* Button color */
+    color: #1d4ed8; /* Dark text on button for contrast */
+    padding: 15px 30px; /* Padding for button */
+    border-radius: 25px; /* Rounded button corners */
+    font-size: 1.25rem; /* Font size for button text */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for button */
+}
+
+.hero-button:hover {
+    background-color: #36d9b4; /* Darker shade on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* Main Image */
+.main-image {
+    width: 80%; /* Full width */
+    max-width: 600px; /* Maximum width */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 2.5rem; /* Increased size for section titles */
+    margin: 20px 0;
+    color: #4a90e2; /* Title color */
+    position: relative;
+    display: inline-block; /* Inline block for underline effect */
+    padding-bottom: 10px; /* Padding for space */
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60%; /* Underline width */
+    height: 5px; /* Underline height */
+    background: #50e3c2; /* Underline color */
+    margin: 10px auto; /* Center underline */
+    border-radius: 5px; /* Rounded edges */
+}
+
+/* Section Text */
+.section-text {
+    font-size: 1.2rem; /* Font size for section text */
+    margin: 0 20px; /* Margin around text */
+    line-height: 1.8; /* Increased line height for readability */
+    color: #6b7280; /* Slightly muted text color */
+}
+
+/* Image Gallery */
+.image-gallery {
+    display: flex;
+    justify-content: center; /* Center gallery images */
+    margin: 30px 0; /* Margin around gallery */
+    gap: 20px; /* Space between images */
+}
+
+.gallery-image {
+    width: 220px; /* Fixed width for gallery images */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.gallery-image:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Section Styles */
+.when-where-section,
+.share-section,
+.find-section,
+.always-reach-section,
+.keep-every-thought-section {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align */
+    margin: 40px 0; /* Margin for spacing */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.when-where-section:hover,
+.share-section:hover,
+.find-section:hover,
+.always-reach-section:hover,
+.keep-every-thought-section:hover {
+    background-color: rgba(245, 245, 245, 0.8); /* Light background on hover */
+    border-radius: 10px; /* Rounded corners on hover */
+}
+
+/* Side Images */
+.side-image {
+    width: 250px; /* Fixed width for side images */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.side-image:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .image-gallery {
+        flex-direction: row; /* Row direction on larger screens */
+    }
+
+    .hero-section {
+        padding: 100px 20px; /* More padding on larger screens */
+    }
+
+    .main-image {
+        max-width: 80%; /* Wider on larger screens */
+    }
+
+    .section-title {
+        font-size: 3rem; /* Larger titles on larger screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 4rem; /* Largest titles on extra-large screens */
+    }
+
+    .hero-button {
+        padding: 20px 40px; /* Larger button on larger screens */
+    }
+
+    .section-title {
+        font-size: 3.5rem; /* Larger section titles */
+    }
+}
