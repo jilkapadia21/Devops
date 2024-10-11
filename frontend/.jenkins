@@ -4,26 +4,62 @@ pipeline {
     environment {
         PROJECT_NAME = "DEVOPS"
         REPO_PATH = "C:\\Program Files\\Jenkins\\.jenkins\\workspace\\first_pipeline"
-        NODE_PATH = "\"C:\\Program Files\\nodejs\\node.exe\"" // Updated with quotes
-        NPM_PATH = "\"C:\\Program Files\\nodejs\\npm.cmd\""   // Updated with quotes
-        FRONTEND_DIR = "frontend" // Update this to match the folder structure in your repo
-        checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[credentialsId: '929c48aa-473a-4853-ad2b-322bb64d97b4', url: 'https://github.com/jilkapadia21/Devops.git']])
+        NODE_PATH = "\"C:\\Program Files\\nodejs\\node.exe\""
+        NPM_PATH = "\"C:\\Program Files\\nodejs\\npm.cmd\""
+        FRONTEND_DIR = "frontend"
+        BACKEND_DIR = "backend"
     }
 
     stages {
-        stage('Stage 1: Cloning Repository...') {
+        stage('Stage 1: Cloning Repository') {
             steps {
                 echo "Project Name: ${env.PROJECT_NAME}"
                 ws("${env.REPO_PATH}") {
-                    git branch: 'main', credentialsId: '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', url: 'https://github.com/jilkapadia21/Devops.git'
+                    git branch: 'main', 
+                        credentialsId: '929c48aa-473a-4853-ad2b-322bb64d97b4', 
+                        url: 'https://github.com/jilkapadia21/Devops.git'
                 }
             }
         }
-        stage('Stage 2: Install Node.js Dependencies...') {
-            steps {
-                dir("${env.REPO_PATH}\\${env.FRONTEND_DIR}") { // Navigate to the frontend folder
-                    echo 'Installing Node.js dependencies...'
-                    bat "${env.NPM_PATH} install --legacy-peer-deps" // Updated to use --legacy-peer-deps
+        
+        stage('Stage 2: Install Node.js Dependencies') {
+            parallel {
+                stage('Install Frontend Dependencies') {
+                    steps {
+                        dir("${env.REPO_PATH}\\${env.FRONTEND_DIR}") {
+                            echo 'Installing Node.js dependencies for frontend...'
+                            bat "${env.NPM_PATH} install --legacy-peer-deps"
+                        }
+                    }
+                }
+                stage('Install Backend Dependencies') {
+                    steps {
+                        dir("${env.REPO_PATH}\\${env.BACKEND_DIR}") {
+                            echo 'Installing Node.js dependencies for backend...'
+                            bat "${env.NPM_PATH} install --legacy-peer-deps"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Stage 3: Code Compile') {
+            parallel {
+                stage('Compile Frontend') {
+                    steps {
+                        dir("${env.REPO_PATH}\\${env.FRONTEND_DIR}") {
+                            echo 'Compiling the frontend code...'
+                            bat "${env.NPM_PATH} run build"
+                        }
+                    }
+                }
+                stage('Compile Backend') {
+                    steps {
+                        dir("${env.REPO_PATH}\\${env.BACKEND_DIR}") {
+                            echo 'Compiling the backend code...'
+                            bat "${env.NPM_PATH} run build"
+                        }
+                    }
                 }
             }
         }
