@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+     tools {
+        jdk 'jdk'
+        nodejs 'nodejs'
+    }
+
     environment {
         PROJECT_NAME = "DEVOPS"
         REPO_PATH = "C:\\Program Files\\Jenkins\\.jenkins\\workspace\\first_pipeline"
