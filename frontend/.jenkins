@@ -25,4 +25,4 @@ pipeline {
                      bat "${env.NPM_PATH} install" // Install dependencies for the React app in the frontend folder
                  }
              }
-         }}
+         }}}
