@@ -7,6 +7,7 @@ pipeline {
         NODE_PATH = "\"C:\\Program Files\\nodejs\\node.exe\"" // Updated with quotes
         NPM_PATH = "\"C:\\Program Files\\nodejs\\npm.cmd\""   // Updated with quotes
         FRONTEND_DIR = "frontend" // Update this to match the folder structure in your repo
+        checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[credentialsId: '929c48aa-473a-4853-ad2b-322bb64d97b4', url: 'https://github.com/jilkapadia21/Devops.git']])
     }
 
     stages {
