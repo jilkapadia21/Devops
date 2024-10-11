@@ -14,7 +14,7 @@ pipeline {
              steps {
                  echo "Project Name: ${env.PROJECT_NAME}"
                  ws("${env.REPO_PATH}") {
-                     git branch: 'master', credentialsId: '', url: ''
+                     git branch: 'main', credentialsId: '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', url: 'https://github.com/jilkapadia21/Devops.git'
                  }
              }
          }
