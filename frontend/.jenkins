@@ -1,0 +1,28 @@
+pipeline {
+     agent any
+
+     environment {
+         PROJECT_NAME = "DEVOPS"
+         REPO_PATH = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\first_pipeline"
+         NODE_PATH = "C:\\Program Files\\nodejs\\node.exe" // Update the path as necessary
+         NPM_PATH = "C:\\Program Files\\nodejs\\npm.cmd" // Update the path as necessary
+         FRONTEND_DIR = "frontend" // Update this to match the folder structure in your repo
+     }
+
+     stages {
+         stage('Stage 1: Cloning Repository...') {
+             steps {
+                 echo "Project Name: ${env.PROJECT_NAME}"
+                 ws("${env.REPO_PATH}") {
+                     git branch: 'master', credentialsId: '', url: ''
+                 }
+             }
+         }
+         stage('Stage 2: Install Node.js Dependencies...') {
+             steps {
+                 dir("${env.REPO_PATH}\\${env.FRONTEND_DIR}") { // Navigate to the frontend folder
+                     echo 'Installing Node.js dependencies...'
+                     bat "${env.NPM_PATH} install" // Install dependencies for the React app in the frontend folder
+                 }
+             }
+         }}
