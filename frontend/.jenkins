@@ -1,30 +1,30 @@
 pipeline {
-     agent any
+    agent any
 
-     environment {
-         PROJECT_NAME = "DEVOPS"
-         REPO_PATH = "C:\\Program Files\\Jenkins\\.jenkins\\workspace\\first_pipeline"
-         NODE_PATH = "\"C:\\Program Files\\nodejs\\node.exe\"" // Updated with quotes
-         NPM_PATH = "\"C:\\Program Files\\nodejs\\npm.cmd\""   // Updated with quotes
-         FRONTEND_DIR = "frontend" // Update this to match the folder structure in your repo
-     }
+    environment {
+        PROJECT_NAME = "DEVOPS"
+        REPO_PATH = "C:\\Program Files\\Jenkins\\.jenkins\\workspace\\first_pipeline"
+        NODE_PATH = "\"C:\\Program Files\\nodejs\\node.exe\"" // Updated with quotes
+        NPM_PATH = "\"C:\\Program Files\\nodejs\\npm.cmd\""   // Updated with quotes
+        FRONTEND_DIR = "frontend" // Update this to match the folder structure in your repo
+    }
 
-     stages {
-         stage('Stage 1: Cloning Repository...') {
-             steps {
-                 echo "Project Name: ${env.PROJECT_NAME}"
-                 ws("${env.REPO_PATH}") {
-                     git branch: 'main', credentialsId: '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', url: 'https://github.com/jilkapadia21/Devops.git'
-                 }
-             }
-         }
-         stage('Stage 2: Install Node.js Dependencies...') {
-             steps {
-                 dir("${env.REPO_PATH}\\${env.FRONTEND_DIR}") { // Navigate to the frontend folder
-                     echo 'Installing Node.js dependencies...'
-                     bat "${env.NPM_PATH} install" // Install dependencies for the React app in the frontend folder
-                 }
-             }
-         }
-     }
+    stages {
+        stage('Stage 1: Cloning Repository...') {
+            steps {
+                echo "Project Name: ${env.PROJECT_NAME}"
+                ws("${env.REPO_PATH}") {
+                    git branch: 'main', credentialsId: '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', url: 'https://github.com/jilkapadia21/Devops.git'
+                }
+            }
+        }
+        stage('Stage 2: Install Node.js Dependencies...') {
+            steps {
+                dir("${env.REPO_PATH}\\${env.FRONTEND_DIR}") { // Navigate to the frontend folder
+                    echo 'Installing Node.js dependencies...'
+                    bat "${env.NPM_PATH} install --legacy-peer-deps" // Updated to use --legacy-peer-deps
+                }
+            }
+        }
+    }
 }
