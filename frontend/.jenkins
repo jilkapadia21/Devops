@@ -3,7 +3,7 @@ pipeline {
 
      environment {
          PROJECT_NAME = "DEVOPS"
-         REPO_PATH = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\first_pipeline"
+         REPO_PATH = "C:\\Program Files\\Jenkins\\.jenkins\\workspace\\first_pipeline"
          NODE_PATH = "C:\\Program Files\\nodejs\\node.exe" // Update the path as necessary
          NPM_PATH = "C:\\Program Files\\nodejs\\npm.cmd" // Update the path as necessary
          FRONTEND_DIR = "frontend" // Update this to match the folder structure in your repo
